@@ -6,16 +6,28 @@ services:
       - POSTGRES_PASSWORD=postgres_password
   redis:
     image: 'redis:latest'
-  nginx:
-    depends_on:
-      - api
-      - client
+  mysql:
+    image: mysql:latest
     restart: always
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./nginx
+    environment:
+      MYSQL_DATABASE: 'usernamefordb'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'usernamefordb'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'Mysqlpassword'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'Mysqlpassword'
     ports:
-      - '3050:80'
+      - '3306:3306'
+    expose:
+      - '3306'
+  nginx:
+    restart: always
+    build: 
+      dockerfile:  Dockerfile.dev
+      context: ./nginx
+    ports: 
+      - '4000:80'
   api:
     build:
       dockerfile: Dockerfile.dev
@@ -31,6 +43,12 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
+      - MYSQL_USER=usernamefordb
+      - MYSQL_PASSWORD=Mysqlpassword
+      - MYSQL_ROOTPASSWORD=Mysqlpassword
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=usernamefordb
   client:
     stdin_open: true
     build:
