@@ -6,7 +6,7 @@ services:
       - POSTGRES_PASSWORD=postgres_password
   redis:
     image: 'redis:latest'
-  db:
+  mysql:
     image: mysql:latest
     restart: always
     environment:
@@ -24,8 +24,6 @@ services:
       # Opens port 3306 on the container
       - '3306'
       # Where our data will be persisted
-    volumes:
-      - my-db:/var/lib/mysql
   nginx:
     restart: always
     build: 
