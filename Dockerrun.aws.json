@@ -2,28 +2,27 @@
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
         {
-            "MemoryReservation": 256,
             "name": "client",
             "image": "matiasgramkow23/multi-client",
             "hostname": "client",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
-            "MemoryReservation": 256,
             "name": "worker",
             "image": "matiasgramkow23/multi-worker",
             "hostname": "worker",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
-            "MemoryReservation": 256,
             "name": "server",
             "image": "matiasgramkow23/multi-server",
             "hostname": "api",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
-            "MemoryReservation": 256,
             "name": "nginx",
             "image": "matiasgramkow23/multi-nginx",
             "hostname": "nginx",
@@ -34,7 +33,8 @@
                     "containerPort": 80
                 }
             ],
-            "links": ["client", "server"]
+            "links": ["client", "server"],
+            "memory": 128
         }
     ]
 }
