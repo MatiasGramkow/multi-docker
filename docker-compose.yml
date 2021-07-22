@@ -28,6 +28,12 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
+      - MYSQL_USER=usernamefordb
+      - MYSQL_PASSWORD=Mysqlpassword
+      - MYSQL_ROOTPASSWORD=Mysqlpassword
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=usernamefordb
   client:
     stdin_open: true
     build:
