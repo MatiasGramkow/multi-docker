@@ -23,6 +23,7 @@ after_success:
   - docker push matiasgramkow23/multi-server
   - docker push matiasgramkow23/multi-nginx
 deploy:
+  skip_cleanup: true
   provider: elasticbeanstalk
   region: 'eu-central-1'
   app: 'MultiDocker-env'
