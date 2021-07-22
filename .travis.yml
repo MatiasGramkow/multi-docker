@@ -26,8 +26,8 @@ deploy:
   skip_cleanup: true
   provider: elasticbeanstalk
   region: 'eu-central-1'
-  app: 'MultiDocker-env'
-  env: 'Multidockerenv-env'
+  app: 'multi-docker'
+  env: 'Multidocker-env'
   bucket_name: 'elasticbeanstalk-eu-central-1-771140874215'
   bucket_path: 'MultiDocker-env'
   on:
